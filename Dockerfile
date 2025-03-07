@@ -8,8 +8,6 @@ LABEL Creator="Abideen Bello"
 RUN echo "My first docker file"
 
 
-RUN adduser -D Abideen
-
 # Set the working directory
 WORKDIR /abideen/app
 
