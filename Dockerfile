@@ -7,7 +7,6 @@ LABEL Creator="Abideen Bello"
 
 RUN echo "My first docker file"
 
-RUN apk add curl
 
 RUN adduser -D Abideen
 
