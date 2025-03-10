@@ -6,7 +6,7 @@ pipeline{
                 script{
                     echo "Building the Application...."
                     sh 'echo $PATH'
-                    sh 'which docker || echo "Docker not found"'
+                    sh '/usr/local/bin/docker --version || /usr/bin/docker --version || echo "Docker still not found"'
                     
                     
                 }
@@ -14,12 +14,13 @@ pipeline{
         }
         stage("Push Docker image to Hub"){
             steps{
-                script{
-                    withCredentials([string(credentialsId: 'Docker_password', variable: 'DockerPassword')]) 
-                    sh 'docker login -u abideenbello -p ${DockerPassword}'
-                    sh 'docker build -t myCofffe:1.2.0 .'
-                }
+                script {
+                    withCredentials([string(credentialsId: 'Docker_password', variable: 'DockerPassword')]) {
+                        sh 'echo $DockerPassword | docker login -u abideenbello --password-stdin'
+                        sh 'docker build -t myCofffe:1.2.0 .'
+                    }
 
+                }
             }
         }
         stage("Test"){
