@@ -10,13 +10,11 @@ pipeline{
                 }
             }
         }
-        satge("Push Docker image to Hub"){
+        stage("Push Docker image to Hub"){
             steps{
                 script{
                     withCredentials([string(credentialsId: 'Docker_password', variable: 'DockerPassword')]) 
                     sh 'docker login -u abideenbello -p ${DockerPassword}'
-                    
-                    
                 }
 
             }
