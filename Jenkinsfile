@@ -9,7 +9,8 @@ pipeline{
                     
                 }
             }
-        satge("Push Docker image to Hub")
+        }
+        satge("Push Docker image to Hub"){
             steps{
                 script{
                     withCredentials([string(credentialsId: 'Docker_password', variable: 'DockerPassword')]) 
