@@ -5,7 +5,9 @@ pipeline{
             steps{
                 script{
                     echo "Building the Application...."
-                    sh 'docker build -t myCofffe:1.2.0 .'
+                    sh 'echo $PATH'
+                    sh 'which docker || echo "Docker not found"'
+                    
                     
                 }
             }
@@ -15,6 +17,7 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'Docker_password', variable: 'DockerPassword')]) 
                     sh 'docker login -u abideenbello -p ${DockerPassword}'
+                    sh 'docker build -t myCofffe:1.2.0 .'
                 }
 
             }
