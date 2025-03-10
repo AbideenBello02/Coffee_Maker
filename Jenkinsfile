@@ -4,10 +4,10 @@ pipeline{
         stage("Build"){
             steps{
                 script{
+                    echo "Building the Application...."
                     sh 'docker build -t myCofffe:1.2.0 .'
-                    echo 'Building Docker Image'
+                    
                 }
-                echo "Building the Application...."
             }
         satge("Push Docker image to Hub")
             steps{
